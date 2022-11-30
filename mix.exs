@@ -45,7 +45,8 @@ defmodule AdventUI.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:tz, ">= 0.24.0"}
+      {:tz, ">= 0.24.0"},
+      {:advent, git: "https://github.com/sevenseacat/advent_of_code.git"}
     ]
   end
 
