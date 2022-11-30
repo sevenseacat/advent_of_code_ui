@@ -47,7 +47,7 @@ config :advent_ui, AdventUIWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"lib/advent_ui_web/(live|views)/.*(ex)$",
+      ~r"lib/advent_ui_web/(live|views|components)/.*(ex)$",
       ~r"lib/advent_ui_web/templates/.*(eex)$"
     ]
   ]

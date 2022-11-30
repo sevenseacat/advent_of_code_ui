@@ -17,11 +17,6 @@ defmodule AdventUIWeb.Router do
   scope "/", AdventUIWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", HomeLive
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", AdventUIWeb do
-  #   pipe_through :api
-  # end
 end
