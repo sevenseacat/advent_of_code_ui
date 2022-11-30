@@ -11,11 +11,8 @@ defmodule AdventUIWeb.Components.Navigation do
     ~H"""
     <div class="my-4">
       <%= for year <- @years do %>
-        <.link
-          navigate={~p"/#{year}"}
-          class="text-green-500 hover:text-green-400 hover:text-shadow shadow-green-400"
-        >
-          [<span class={if @selected == year, do: "underline underline-offset-4"}><%= year %></span>]
+        <.link navigate={~p"/#{year}"} class={link_classes(@selected == year)}>
+          [<span class={}><%= year %></span>]
         </.link>
       <% end %>
     </div>
@@ -59,11 +56,8 @@ defmodule AdventUIWeb.Components.Navigation do
         <.no_star />
         <.no_star />
       <% else %>
-        <.link
-          navigate={~p"/#{@year}/#{@day}"}
-          class="text-green-500 hover:text-green-400 hover:text-shadow shadow-green-400"
-        >
-          <span class={if @selected == @day, do: "underline underline-offset-4"}><%= @day %></span>
+        <.link navigate={~p"/#{@year}/#{@day}"} class={link_classes(@selected == @day)}>
+          <%= @day %>
         </.link>
         <.star year={@year} day={@day} part={1} />
         <.star year={@year} day={@day} part={2} />
@@ -90,6 +84,12 @@ defmodule AdventUIWeb.Components.Navigation do
     ~H"""
     <span class="w-4 h-4 inline-block text-gray-400 text-center">.</span>
     """
+  end
+
+  defp link_classes(true), do: "text-white shadow-white text-shadow"
+
+  defp link_classes(_) do
+    "text-green-500 shadow-green-400 hover:text-shadow hover:text-green-400"
   end
 
   defp future?(year, day, today_aoc) do
