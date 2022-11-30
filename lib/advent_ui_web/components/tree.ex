@@ -3,7 +3,7 @@ defmodule AdventUIWeb.Components.Tree do
 
   def tree(assigns) do
     ~H"""
-    <pre class="mt-5 leading-snug">
+    <pre class="mt-5 leading-snug" alt="Christmas tree">
     <%= for char <- String.graphemes(undecorated_tree()) do %><.char char={char} /><% end %>
     </pre>
     """
