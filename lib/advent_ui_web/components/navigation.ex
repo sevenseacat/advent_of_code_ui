@@ -10,11 +10,9 @@ defmodule AdventUIWeb.Components.Navigation do
 
     ~H"""
     <div class="my-4">
-      <%= for year <- @years do %>
-        <.link navigate={~p"/#{year}"} class={link_classes(@selected == year)}>
-          [<span class={}><%= year %></span>]
-        </.link>
-      <% end %>
+      <.link :for={year <- @years} navigate={~p"/#{year}"} class={link_classes(@selected == year)}>
+        [<span class={}><%= year %></span>]
+      </.link>
     </div>
     """
   end
@@ -28,7 +26,7 @@ defmodule AdventUIWeb.Components.Navigation do
           <%= render_slot(@inner_block) %>
         </div>
 
-        <.home_link :if={assigns[:year]} />
+        <.home_link />
       </div>
     </div>
     """
