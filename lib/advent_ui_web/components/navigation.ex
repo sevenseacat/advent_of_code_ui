@@ -22,15 +22,27 @@ defmodule AdventUIWeb.Components.Navigation do
   attr :selected, :integer, default: nil
 
   def day_selector(assigns) do
+    # AOC is in UTC-5, which is New York timezone
+    assigns = assign(assigns, aoc_date: DateTime.now!("America/New_York") |> DateTime.to_date())
+
     ~H"""
     <%= for day <- 1..25 do %>
-      <.link
-        navigate={~p"/#{@year}/#{day}"}
-        class="text-green-500 hover:text-green-400 hover:text-shadow shadow-green-400"
-      >
-        [<span class={if @selected == day, do: "underline underline-offset-4"}><%= day %></span>]
-      </.link>
+      <%= if future?(@year, day, @aoc_date) do %>
+        <span class="text-gray-400"><%= day %></span>
+      <% else %>
+        <.link
+          navigate={~p"/#{@year}/#{day}"}
+          class="text-green-500 hover:text-green-400 hover:text-shadow shadow-green-400"
+        >
+          <span class={if @selected == day, do: "underline underline-offset-4"}><%= day %></span>
+        </.link>
+      <% end %>
     <% end %>
     """
+  end
+
+  defp future?(year, day, today_aoc) do
+    maybe_future_date = Date.from_erl!({year, 12, day})
+    Date.compare(maybe_future_date, today_aoc) == :gt
   end
 end
