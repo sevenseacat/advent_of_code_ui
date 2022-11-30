@@ -18,5 +18,7 @@ defmodule AdventUIWeb.Router do
     pipe_through :browser
 
     live "/", HomeLive
+    live "/:year", YearLive
+    live "/:year/:day", DayLive
   end
 end
