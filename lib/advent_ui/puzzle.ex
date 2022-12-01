@@ -1,4 +1,14 @@
 defmodule AdventUI.Puzzle do
+  def year_complete?(year) do
+    count_complete_puzzles(year) == 50
+  end
+
+  def count_complete_puzzles(year) do
+    for(day <- 25..1, part <- [2, 1], do: {day, part})
+    |> Enum.filter(fn {day, part} -> complete?(year, day, part) end)
+    |> Enum.count()
+  end
+
   # You get the last star only if you have all 49 other stars.
   def complete?(year, 25, 2) do
     for(day <- 25..1, part <- [2, 1], do: {day, part})
