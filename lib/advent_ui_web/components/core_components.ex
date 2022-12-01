@@ -21,6 +21,39 @@ defmodule AdventUIWeb.CoreComponents do
     """
   end
 
+  attr :filled, :boolean, default: true
+  attr :size, :string, default: "medium"
+
+  def star(assigns) do
+    ~H"""
+    <Heroicons.star
+      solid={@filled}
+      class={[
+        "inline first-of-type:-ml-1",
+        star_size_classes(@size),
+        if(@filled, do: "text-yellow-300", else: "text-gray-400")
+      ]}
+    />
+    """
+  end
+
+  attr :size, :string, default: "medium"
+
+  def no_star(assigns) do
+    ~H"""
+    <div class={[
+      star_size_classes(@size),
+      "first-of-type:-ml-1 inline-block text-gray-400 text-center"
+    ]}>
+      .
+    </div>
+    """
+  end
+
+  defp star_size_classes("small"), do: "w-3 h-3 -mt-0.5"
+  defp star_size_classes("medium"), do: "w-4 h-4 -mt-1"
+  defp star_size_classes("large"), do: "w-6 h-6 -mt-1"
+
   @doc """
   Renders a modal.
 
